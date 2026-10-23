@@ -17,7 +17,7 @@ const Header = () => {
           <span className="text-primary">StayLite</span>Hotel
         </a>
         {/**Navbar */}
-        <Navbar />
+        <Navbar isClicked={isClicked} toggleNavClick={toggleNavClick} />
         <div className="flex items-center justify-start gap-4">
           <button>Login</button>
           {/**Mode Toggle */}
