@@ -1,5 +1,6 @@
 ---
 import AmenitiesCard from "@/components/cards/AmenitiesCard.astro";
+import { amenitites } from "@/lib/amenities";
 ---
 
 <section class="pt-28">
@@ -14,26 +15,15 @@ import AmenitiesCard from "@/components/cards/AmenitiesCard.astro";
     <div
       class="space-y-6 md:space-y-0 md:grid md:grid-cols-2 md:gap-4 lg:grid-cols-4"
     >
-      <AmenitiesCard
-        icon="wifi"
-        name="High-Speed Wifi"
-        description="Stay connected with complimentary high-speed internet throughout the hotel."
-      />
-      <AmenitiesCard
-        icon="utensils"
-        name="Fine Dining"
-        description="Experience exquisite cuisine at our award-winning restaurants."
-      />
-      <AmenitiesCard
-        icon="dumbbells"
-        name="Spa & Wellness"
-        description="Rejuvenate your body and mind at our luxury spa and wellness center."
-      />
-      <AmenitiesCard
-        icon="waves-ladder"
-        name="Swimming Pool"
-        description="Take a refreshing dip in our temperature-controlled swimming pool."
-      />
+      {
+        amenitites.map((amenity) => (
+          <AmenitiesCard
+            icon={amenity.icon}
+            name={amenity.name}
+            description={amenity.description}
+          />
+        ))
+      }
     </div>
   </div>
 </section>

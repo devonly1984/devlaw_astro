@@ -1,0 +1,18 @@
+---
+import { Check } from "lucide-react";
+const { name, description } = Astro.props;
+---
+
+<li class="flex items-start">
+  <div
+    class="bg-primary mr-3 flex size-6 items-center justify-center rounded-full"
+  >
+    <Check size={18} className="text-white" />
+  </div>
+  <div class="">
+    <h3 class="font-medium">{name}</h3>
+    <p class="text-muted-foreground text-sm">
+      {description}
+    </p>
+  </div>
+</li>
