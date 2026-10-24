@@ -1,0 +1,39 @@
+---
+import AmenitiesCard from "@/components/cards/AmenitiesCard.astro";
+---
+
+<section class="pt-28">
+  <div class="container">
+    <div class="text-center mb-8">
+      <h2 class="mb-1 text-500 font-600 md:text-600">Hotel Amenities</h2>
+      <p class="md:text-lg text-muted-foreground">
+        Enjoy our premium facilities designed for your comfort and
+        convenience.
+      </p>
+    </div>
+    <div
+      class="space-y-6 md:space-y-0 md:grid md:grid-cols-2 md:gap-4 lg:grid-cols-4"
+    >
+      <AmenitiesCard
+        icon="wifi"
+        name="High-Speed Wifi"
+        description="Stay connected with complimentary high-speed internet throughout the hotel."
+      />
+      <AmenitiesCard
+        icon="utensils"
+        name="Fine Dining"
+        description="Experience exquisite cuisine at our award-winning restaurants."
+      />
+      <AmenitiesCard
+        icon="dumbbells"
+        name="Spa & Wellness"
+        description="Rejuvenate your body and mind at our luxury spa and wellness center."
+      />
+      <AmenitiesCard
+        icon="waves-ladder"
+        name="Swimming Pool"
+        description="Take a refreshing dip in our temperature-controlled swimming pool."
+      />
+    </div>
+  </div>
+</section>

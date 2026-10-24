@@ -7,6 +7,7 @@ import "@fontsource/poppins/700.css";
 import "@fontsource/poppins/800.css";
 import "@fontsource/poppins/900.css";
 import Header from "@/components/layouts/Header";
+import Footer from "./Footer.astro";
 
 interface Props {
   title?: string;
@@ -54,6 +55,7 @@ const {
   <body class="font-poppins">
     <Header client:load />
     <slot />
+    <Footer/>
   </body>
 </html>
 

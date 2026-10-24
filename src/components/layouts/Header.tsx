@@ -1,19 +1,42 @@
 import { AlignLeft, X } from "lucide-react";
 import { ModeToggle } from "../mode/ModeToggle";
 import Navbar from "./Navbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Header = () => {
   const [isClicked, setIsClicked] = useState(false)
+  const [scrolling, setScrolling] = useState(false);
+  useEffect(() => {
+    const handleScroll = ()=>{
+      const scroll = window.scrollY;
+      if (scroll > 100) {
+        setScrolling(true);
+      } else {
+        setScrolling(false);
+      }
+    }
+    window.addEventListener('scroll',handleScroll);
+    return ()=>{
+      window.removeEventListener("scroll", handleScroll);
+    }
+  }, []);
+  const getTextColor = ()=>{
+    return scrolling ? "text-foreground" : "text-white";
+  }
   const toggleNavClick=()=>{
     setIsClicked(!isClicked);
 
   }
   return (
-    <header className="fixed top-0 z-500 w-full ">
+    <header
+      className={` ${scrolling ? "bg-background animate-in duration-500" : "animate-out duration-500"} fixed top-0 z-500 w-full ${getTextColor()}`}
+    >
       <div className="container flex items-center py-5 justify-between">
         {/**Logo */}
-        <a href="/" className="text-200 font-800 z-10 inline-block">
+        <a
+          href="/"
+          className={` ${isClicked ? "text-black" : ""} text-200 font-800 z-10 inline-block`}
+        >
           <span className="text-primary">StayLite</span>Hotel
         </a>
         {/**Navbar */}
