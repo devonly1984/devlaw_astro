@@ -1,0 +1,40 @@
+---
+import type { Room } from "@/lib/types";
+
+import { Image } from "astro:assets";
+interface Props {
+  room: Room;
+}
+const { room } = Astro.props;
+---
+
+{
+  room.thumbnails && room.thumbnails.length > 0 && (
+    <div class="mt-4 flex items-center justify-center gap-4 overflow-x-auto pb-2 ">
+      <div
+        class="thumbnail-item border-primary size-20 cursor-pointer overflow-hidden rounded-md border-2 "
+        data-index="main"
+      >
+        <Image
+          id="mainImage"
+          class={"h-full w-full rounded-lg object-cover"}
+          src={room.image}
+          alt={`${room.name} - main`}
+        />
+      </div>
+      {room.thumbnails.map((thumbnail, index) => (
+        <div
+          class="thumbnail-item size-20 cursor-pointer overflow-hidden rounded-md border-2 hover:border-primary"
+          data-index={index}
+        >
+          <Image
+            id="mainImage"
+            class={"h-full w-full rounded-lg object-cover"}
+            src={thumbnail}
+            alt={`${room.name} - thumbnail ${index + 1}`}
+          />
+        </div>
+      ))}
+    </div>
+  )
+}

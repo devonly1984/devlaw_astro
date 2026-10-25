@@ -1,0 +1,85 @@
+---
+import { Image } from "astro:assets";
+import RoomAmenitiesCard from "@/components/cards/Invididual/RoomAmenitiesCard.astro";
+import ThumbnailCard from "@/components/cards/Invididual/ThumbnailCard.astro";
+import RoomFeaturesCard from "@/components/cards/Invididual/RoomFeaturesCard.astro";
+import Reservation from "@/components/cards/Invididual/Reservation";
+import Layout from "@/components/layouts/Layout.astro";
+import { rooms } from "@/lib/constants";
+
+export const getStaticPaths = () => {
+  return rooms.map(({ slug }) => {
+    return {
+      params: { slug },
+    };
+  });
+};
+const { slug } = Astro.params;
+if (slug === "") {
+  throw new Error("Slug is required");
+}
+
+const room = rooms.find((item) => item.slug === slug);
+if (!room) {
+  throw new Error("Room not found");
+}
+---
+
+<Layout title={room.name}>
+  <div class="container pt-30">
+    <RoomFeaturesCard room={room} />
+    <div class="">
+      <Image
+        id="mainImage"
+        class={"h-125 rounded-lg object-cover"}
+        src={room.image}
+        alt={room.name}
+      />
+    </div>
+    <ThumbnailCard room={room} />
+  </div>
+  <div class="mt-16 md:grid md:grid-cols-2 md:gap-8">
+    <!--First Column -->
+    <div class="">
+      <div class="mb-8">
+        <h3 class="text-300 font-600 mb-4">Description</h3>
+        <p>{room.description}</p>
+      </div>
+      <!--Second Column -->
+      <RoomAmenitiesCard room={room} />
+      <div class="">
+        <h3 class="text-300 font-600 mb-4">Customer Reviews</h3>
+        <p>Be the first to leave a review by booking a room!</p>
+      </div>
+    </div>
+    <div class="">
+      <Reservation client:load room={room} />
+    </div>
+  </div>
+</Layout>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const mainImage = document.getElementById("mainImage");
+    const thumbnails = document.querySelectorAll(".thumbnail-item");
+    if (mainImage && thumbnails.length > 0) {
+      const originalMainSrc = mainImage.getAttribute("src") || "";
+      thumbnails.forEach((thumbnail) => {
+        thumbnail.addEventListener("click", () => {
+          thumbnails.forEach((t) => t.classList.remove("border-primary"));
+          thumbnail.classList.add("border-primary");
+          const index = thumbnail.getAttribute("data-index");
+          if (index === "main") {
+            mainImage.setAttribute("src", originalMainSrc);
+          } else {
+            const thumbnailImg = thumbnail.querySelector("img");
+            if (thumbnailImg) {
+              const thumbnailSrc = thumbnailImg.getAttribute("src") || "";
+              mainImage.setAttribute("src", thumbnailSrc);
+            }
+          }
+        });
+      });
+    }
+  });
+</script>

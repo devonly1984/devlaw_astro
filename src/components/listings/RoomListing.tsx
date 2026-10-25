@@ -2,10 +2,8 @@ import type { Room } from "@/lib/types";
 import { Eye } from "lucide-react";
 import { Button } from "../ui/button";
 
-interface RoomListingProps {
-    room:Room;
-}
-const RoomListing = ({ room }: RoomListingProps) => {
+
+const RoomListing = ({ room }: {room:Room}) => {
   return (
     <div className="mb-8 md:mb-0">
       <div className="group">

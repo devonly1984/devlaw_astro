@@ -1,0 +1,37 @@
+---
+import type { Room } from "@/lib/types";
+import { AirVent, BathIcon, CoffeeIcon, PhoneIcon, TvIcon, WifiIcon } from "lucide-react";
+
+interface Props {
+  room: Room;
+}
+const { room } = Astro.props;
+---
+
+<div class="">
+  <h3 class="text-300 font-600 mb-4">Room Amenities</h3>
+  <div class="mb-8 grid grid-cols-2 gap-4">
+    {
+      room.amenities.map((amenity) => (
+        <div class="flex items-center gap-4">
+          {amenity.icon === "wifi" && (
+            <WifiIcon className="text-primary" />
+          )}
+
+          {amenity.icon === "tv" && <TvIcon className="text-primary" />}
+          {amenity.icon === "ac" && <AirVent className="text-primary" />}
+          {amenity.icon === "coffee" && (
+            <CoffeeIcon className="text-primary" />
+          )}
+          {amenity.icon === "shower" && (
+            <BathIcon className="text-primary" />
+          )}
+          {amenity.icon === "room-service" && (
+            <PhoneIcon className="text-primary" />
+          )}
+          <p>{amenity.name}</p>
+        </div>
+      ))
+    }
+  </div>
+</div>
