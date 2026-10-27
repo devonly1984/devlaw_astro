@@ -1,6 +1,19 @@
+import {  Show, SignInButton } from '@clerk/astro/react';
+import { Button } from '../ui/button';
+import { useEffect, useState } from 'react';
+
 const Login = () => {
+  const [currentUrl,setCurrentUrl]  = useState('');
+  useEffect(()=>{
+    setCurrentUrl(window.location.href);
+  })
   return (
-    <div>Login</div>
-  )
-}
-export default Login
+    <Show when="signed-out">
+      <SignInButton mode="modal" signUpForceRedirectUrl={currentUrl}>
+        <Button className="translate-y-1 md:translate-y-0">Login</Button>
+      </SignInButton>
+    </Show>
+  );
+};
+
+export default Login;

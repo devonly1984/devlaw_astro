@@ -2,7 +2,11 @@ import { AlignLeft, X } from "lucide-react";
 import { ModeToggle } from "../mode/ModeToggle";
 import Navbar from "./Navbar";
 import { useEffect, useState } from "react";
+
+
 import Login from "./Login";
+import { Show } from "@clerk/astro/react";
+import Dashboard from "../Dashboard";
 
 const Header = () => {
   const [isClicked, setIsClicked] = useState(false)
@@ -44,6 +48,9 @@ const Header = () => {
         <Navbar isClicked={isClicked} toggleNavClick={toggleNavClick} />
         <div className="flex items-center justify-start gap-4">
           <Login />
+          <Show when="signed-in">
+            <Dashboard />
+          </Show>
           {/**Mode Toggle */}
           <ModeToggle />
           {/**Menu Buttons */}

@@ -1,12 +1,11 @@
-import {clerkMiddleware} from '@clerk/astro/server';
+import { clerkMiddleware,  } from '@clerk/astro/server';
 
 
-export const onRequest = clerkMiddleware((auth) => {
-    const {redirectToSignIn,userId} = auth()
-    if (!userId) {
-        return redirectToSignIn()
-    }
+
+export const onRequest = clerkMiddleware((auth, ctx) => {
+  const { userId, redirectToSignIn } = auth();
     
-
-
-})
+  if (!userId ) {
+    return redirectToSignIn();
+  }
+});
