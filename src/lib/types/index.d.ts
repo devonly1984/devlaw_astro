@@ -21,3 +21,11 @@ export interface Room  {
     price:number;
     discount:number;
 }
+export interface BookingData {
+    checkIn:Date|undefined;
+    checkOut:Date|undefined;
+    roomCategory:string;
+    noOfRooms: number;
+    adults:number;
+    children:number;
+}

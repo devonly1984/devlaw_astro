@@ -2,6 +2,7 @@ import { AlignLeft, X } from "lucide-react";
 import { ModeToggle } from "../mode/ModeToggle";
 import Navbar from "./Navbar";
 import { useEffect, useState } from "react";
+import Login from "./Login";
 
 const Header = () => {
   const [isClicked, setIsClicked] = useState(false)
@@ -42,7 +43,7 @@ const Header = () => {
         {/**Navbar */}
         <Navbar isClicked={isClicked} toggleNavClick={toggleNavClick} />
         <div className="flex items-center justify-start gap-4">
-          <button>Login</button>
+          <Login />
           {/**Mode Toggle */}
           <ModeToggle />
           {/**Menu Buttons */}
